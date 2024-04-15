@@ -1143,6 +1143,8 @@ class Strategy(with_metaclass(MetaStrategy, StrategyBase)):
         kargs.update(kwargs)
         kargs['transmit'] = limitexec is None and stopexec is None
         o = self.buy(**kargs)
+        if o is None:
+            return [None, None, None]
 
         if stopexec is not None:
             # low side / stop
@@ -1215,6 +1217,8 @@ class Strategy(with_metaclass(MetaStrategy, StrategyBase)):
         kargs.update(kwargs)
         kargs['transmit'] = limitexec is None and stopexec is None
         o = self.sell(**kargs)
+        if o is None:
+            return [None, None, None]
 
         if stopexec is not None:
             # high side / stop
